@@ -1,9 +1,119 @@
+import React, { useState, useEffect } from 'react';
+import { FormControl, MenuItem, Select, Card, CardContent, CardMedia } from '@material-ui/core';
 import './App.css';
+import panstwa from './data/panstwa.json';
+import InfoBox from './components/InfoBox';
+import Map from './components/Map';
+import FlagBox from './components/FlagBox';
 
 function App() {
+
+const [countries, setCountries] = useState([]);
+const [country, setCountry] = useState('PL|Polska');
+const [flag, setFlag] = useState('https://disease.sh/assets/img/flags/pl.png');
+const [countryInfo, setCountryInfo] = useState({});
+
+
+useEffect(() => {
+  const getCountriesData = () => {
+
+      const countries = panstwa.map((country) =>(
+        {
+          name: country.name,
+          code: country.iso2,
+        }));
+
+        setCountries(countries);
+  };
+  getCountriesData();
+  getCovidData('https://disease.sh/v3/covid-19/countries/pl');
+}, []);
+
+const getCovidData = async (url) => {
+  await fetch(url)
+  .then(response => response.json())
+  .then(data => {
+
+    var covidData = {
+      lastUpdated: new Date(data.updated).toLocaleString(),
+      population: `${(data.population / 1000000).toFixed(2)} mln`,
+      todayCases: data.todayCases,
+      todayDeaths: data.todayDeaths,
+      todayRecovered: data.todayRecovered,
+      totalCases: data.cases,
+      totalDeaths: data.deaths,
+      totalRecovered: data.recovered,
+      totalActive: data.active,
+      tests: data.tests,
+      testsPerMillion: data.testsPerOneMillion,
+      percentOfDiscover: `${((data.cases / data.tests) * 100).toFixed(1)} %`,
+      activePerOneMillion: data.activePerOneMillion
+      };
+    
+      setCountryInfo(covidData);
+  });
+}
+
+
+const onCountryChange = async (event) => {
+  const fullValue = event.target.value.split('|');
+  const code = fullValue[0];
+  const flagPath = `https://disease.sh/assets/img/flags/${code.toLowerCase()}.png`
+  setCountry(event.target.value);
+  setFlag(flagPath);
+
+  const url = code === 'ALL' 
+  ? 'https://disease.sh/v3/covid-19/all' 
+  : `https://disease.sh/v3/covid-19/countries/${code.toLowerCase()}`;
+
+  await getCovidData(url);
+
+};
+
+const fullValue = country.split('|');
+const code = fullValue[0];
+const name = fullValue[1];
   return (
     <div className="app">
-      <h1>Zbudujmy COVID-19 Tracker App</h1>
+
+      <div className="app__left">
+          <div className="app__header">
+            <h1 className="app__title">Statystyki <span className="app__covid">Covid-19</span></h1>
+            <FormControl className="app__dropdown" style={{minWidth: 250}}>
+              <Select 
+              autoWidth={false}
+              variant="outlined" 
+              onChange={onCountryChange}
+              value={country}
+              >
+              <MenuItem key="PL" value="PL|Polska">Polska</MenuItem>
+              {
+                countries.map((c) => (
+                  <MenuItem key={c.code} value={`${c.code}|${c.name}`}>{c.name}</MenuItem>
+                ))
+              }
+              </Select>
+            </FormControl>
+          </div>
+
+          <div className="app__stats">
+            <FlagBox flag={flag} code={code} name={name} updated={countryInfo.lastUpdated}/>
+            <InfoBox title="Zarażeni dzisiaj: " total={countryInfo.totalCases} cases={countryInfo.todayCases}/>
+            <InfoBox title="Wyzdrowiało dzisiaj: " total={countryInfo.totalRecovered} cases={countryInfo.todayRecovered}/>
+            <InfoBox title="Zmarli dzisiaj: " total={countryInfo.totalDeaths} cases={countryInfo.todayDeaths}/>
+          </div>
+          <Map />
+      </div>
+
+      <Card className="app__right">
+          <CardContent>
+            <h3>Przypadki według państw</h3>
+            {/* Table */}
+            <h3>Nowe przypadki na świecie</h3>
+            {/* Graph */}
+          </CardContent>
+      </Card>
+
     </div>
   );
 }
