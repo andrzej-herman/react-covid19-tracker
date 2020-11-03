@@ -10,7 +10,7 @@ function FlagBox({flag, code, name, updated}) {
             <CardContent>
                <img className="flagBox__flag" src={flagPath} alt={code}/>
                 <h2 className="fw-400">{name}</h2>
-                <h5 className="fw-400">{dateUpdated}</h5>
+                <h6 className="fw-400">{dateUpdated}</h6>
             </CardContent>
         </Card>
     )

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, MenuItem, Select, Card, CardContent, CardMedia } from '@material-ui/core';
+import { FormControl, MenuItem, Select, Card, CardContent } from '@material-ui/core';
 import './App.css';
 import panstwa from './data/panstwa.json';
 import InfoBox from './components/InfoBox';
 import Map from './components/Map';
 import FlagBox from './components/FlagBox';
+import Table from './components/Table';
 
 function App() {
 
@@ -12,22 +13,36 @@ const [countries, setCountries] = useState([]);
 const [country, setCountry] = useState('PL|Polska');
 const [flag, setFlag] = useState('https://disease.sh/assets/img/flags/pl.png');
 const [countryInfo, setCountryInfo] = useState({});
+const [tableData, setTableData] = useState([]);
 
 
 useEffect(() => {
-  const getCountriesData = () => {
+  const getCountriesData = async () => {
 
-      const countries = panstwa.map((country) =>(
+      const countries = panstwa.map((country) => (
         {
           name: country.name,
           code: country.iso2,
         }));
 
         setCountries(countries);
+        await getCountriesFromApi();
   };
   getCountriesData();
   getCovidData('https://disease.sh/v3/covid-19/countries/pl');
 }, []);
+
+const getCountriesFromApi = async () => {
+  await fetch('https://disease.sh/v3/covid-19/countries')
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach(element => {
+    setTableData(data);
+
+    });
+  })
+};
+
 
 const getCovidData = async (url) => {
   await fetch(url)
@@ -67,7 +82,7 @@ const onCountryChange = async (event) => {
   : `https://disease.sh/v3/covid-19/countries/${code.toLowerCase()}`;
 
   await getCovidData(url);
-
+  console.log(tableData[10]);
 };
 
 const fullValue = country.split('|');
@@ -78,9 +93,16 @@ const name = fullValue[1];
 
       <div className="app__left">
           <div className="app__header">
-            <h1 className="app__title">Statystyki <span className="app__covid">Covid-19</span></h1>
-            <FormControl className="app__dropdown" style={{minWidth: 250}}>
+            <div className="app__header__title">
+              <h1 className="app__title">Statystyki <span className="app__covid">Covid-19</span></h1>
+              <p className="app__header__author">Dane pochodzą z serwisu: <a href="https://disease.sh" target="blank">disease.sh</a></p>
+              <p className="app__header__author">Programowanie: Andrzej Herman</p>
+              
+            </div>
+
+            <FormControl className="app__dropdown" style={{minWidth: 250, height: 36}}>
               <Select 
+              style={{height: 36}}
               autoWidth={false}
               variant="outlined" 
               onChange={onCountryChange}
@@ -107,9 +129,9 @@ const name = fullValue[1];
 
       <Card className="app__right">
           <CardContent>
-            <h3>Przypadki według państw</h3>
-            {/* Table */}
-            <h3>Nowe przypadki na świecie</h3>
+            <h5 className="fw-400">Przypadki według państw</h5>
+            <Table countries={tableData}/>
+            <h5 className="fw-400">Nowe przypadki na świecie</h5>
             {/* Graph */}
           </CardContent>
       </Card>
