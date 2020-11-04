@@ -54,18 +54,18 @@ const options = {
 const translateAxis = (value) => {
     if (value.toString().length <= 6) {
         const month = value.toString().substr(0, 3);
-        if (month == 'Jan') return 'Sty' + value.toString().substr(3);
-        if (month == 'Feb') return 'Lut' + value.toString().substr(3);
-        if (month == 'Mar') return 'Mar' + value.toString().substr(3);
-        if (month == 'Apr') return 'Kwi' + value.toString().substr(3);
-        if (month == 'May') return 'Maj' + value.toString().substr(3);
-        if (month == 'Jun') return 'Cze' + value.toString().substr(3);
-        if (month == 'Jul') return 'Lip' + value.toString().substr(3);
-        if (month == 'Aug') return 'Sie' + value.toString().substr(3);
-        if (month == 'Aug') return 'Sie' + value.toString().substr(3);
-        if (month == 'Sep') return 'Wrz' + value.toString().substr(3);
-        if (month == 'Oct') return 'Paź' + value.toString().substr(3);
-        if (month == 'Dec') return 'Gru' + value.toString().substr(3);
+        if (month === 'Jan') return 'Sty' + value.toString().substr(3);
+        if (month === 'Feb') return 'Lut' + value.toString().substr(3);
+        if (month === 'Mar') return 'Mar' + value.toString().substr(3);
+        if (month === 'Apr') return 'Kwi' + value.toString().substr(3);
+        if (month === 'May') return 'Maj' + value.toString().substr(3);
+        if (month === 'Jun') return 'Cze' + value.toString().substr(3);
+        if (month === 'Jul') return 'Lip' + value.toString().substr(3);
+        if (month === 'Aug') return 'Sie' + value.toString().substr(3);
+        if (month === 'Aug') return 'Sie' + value.toString().substr(3);
+        if (month === 'Sep') return 'Wrz' + value.toString().substr(3);
+        if (month === 'Oct') return 'Paź' + value.toString().substr(3);
+        if (month === 'Dec') return 'Gru' + value.toString().substr(3);
     }
     else
         return value;
@@ -109,7 +109,7 @@ function LineGraph({casesType = 'cases'}) {
     }
 
     return (
-        <div style={{marginTop: '20px', marginBottom: '20px', height: 250, width: 460}}>
+        <div style={{marginTop: '20px', marginBottom: '20px', height: 250, width: '100%'}}>
             {data?.length > 0 && (
             <Line 
             options={options}

@@ -6,24 +6,17 @@
 }
 
 body {
-  background-image: url(./img/dorcia-super.jpg);
-  background-repeat: no-repeat;
-  background-size: auto;
+  background: url(./img/dorcia-super.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .app {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.app__left {
-  /* background-color: #e2e3e7; */
-  padding: 10px;
-}
-
-.app__right {
-  /* background-color: #e2e3e7; */
-  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100vw;
 }
 
 .app__title {
@@ -48,7 +41,20 @@ body {
 }
 
 .app__boxes {
-  margin-top:40px;
+  margin-top: 20px;
+}
+
+.infoBox {
+  margin-top: 20px;
+}
+
+.app__tabs {
+  margin-top: 30px;
+}
+
+.tab__content {
+  padding: 25px;
+  margin-top: 10px;
 }
 
 .black {
@@ -61,4 +67,8 @@ body {
 
 .red {
   color:red;
+}
+
+#mapid { 
+  height: 180px; 
 }

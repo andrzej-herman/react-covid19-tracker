@@ -8,12 +8,12 @@ import '../App.css';
 function InfoBox({title, cases, total, updated}) {
 
     let image = zarazeni;
-    if (title == 'wyzdrowialo') image = wyzdrowialo;
-    if (title == 'zgony') image = zgony;
+    if (title === 'wyzdrowialo') image = wyzdrowialo;
+    if (title === 'zgony') image = zgony;
 
     let clsName = 'red';
-    if (title == 'wyzdrowialo') clsName = 'green';
-    if (title == 'zgony') clsName = 'black';
+    if (title === 'wyzdrowialo') clsName = 'green';
+    if (title === 'zgony') clsName = 'black';
 
     return (
 
@@ -28,16 +28,6 @@ function InfoBox({title, cases, total, updated}) {
                 <Card.Title style={{fontSize: 12, color: '#aaaaaa'}}>Ostatnia aktualizacja: {updated}</Card.Title>
             </Card.Body>
         </Card>
-
-
-
-        // <Card className="infoBox">
-        //     <CardContent>
-        //         <Typography className="infoBox__title" color="textSecondary">{title}</Typography>
-        //         <h2 className="infoBox__cases">{cases}</h2>
-        //         <Typography className="infoBox__total" color="textSecondary">Łącznie: {total}</Typography>
-        //     </CardContent>
-        // </Card>
     )
 }
 
