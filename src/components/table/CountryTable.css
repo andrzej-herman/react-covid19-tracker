@@ -1,0 +1,11 @@
+ .table {
+    margin-top: 20px;
+    display: block;
+    height: 694px;
+    overflow-y: scroll;
+    margin-bottom: 40px;
+}
+
+.red {
+    color: red;
+}

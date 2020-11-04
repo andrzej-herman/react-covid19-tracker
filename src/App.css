@@ -1,75 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
-
-
 * {
-  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
   font-family: 'Roboto', sans-serif;
 }
 
 body {
-  background-color: #f5f6fa;
+  background-image: url(./img/dorcia-super.jpg);
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 .app {
-  display: flex;
-  justify-content: space-evenly;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .app__left {
-  flex: 0.85;
+  /* background-color: #e2e3e7; */
+  padding: 10px;
 }
 
-.app__header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  justify-content: space-between;
+.app__right {
+  /* background-color: #e2e3e7; */
+  padding: 10px;
+}
+
+.app__title {
+  font-weight: 400;
+  font-stretch: condensed;
+  margin-bottom: 0!important;
+  margin-top: 0!important;
+}
+
+.app__covid {
+  font-weight: 500;
+  color: red;
+  font-stretch: condensed;
+  margin-bottom: 0!important;
+  margin-top: 0!important;
 }
 
 .app__header__author {
   color: gray;
-  font-size: 11px;
+  font-size: 12px;
+  margin: 0!important;
 }
 
-.app__stats {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
+.app__boxes {
+  margin-top:40px;
 }
 
-.app__covid {
-  color: red;
-  font-weight: 300;
+.black {
+  color: black;
 }
 
-.app__title {
-  font-weight: 300;
+.green {
+  color:green;
 }
 
-.flagBox {
-  padding: 10px
-}
-
-.flagBox__flag {
-  width: 100px;
-  height: 65px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #c2c3c4;
-}
-
-
-.fw-400 {
-  font-weight: 400!important;
-}
-
-
-@media (max-width: 990px) {
-  .app {
-    flex-direction: column;
-  }
+.red {
+  color:red;
 }
