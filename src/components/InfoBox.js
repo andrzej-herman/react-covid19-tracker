@@ -19,11 +19,11 @@ function InfoBox({title, cases, total, updated}) {
 
         <Card>
             <Card.Img variant="top" src={image} />
-            <Card.Body style={{padding: '30px'}}>
+            <Card.Body style={{paddingTop: 20, paddingBottom: 5, paddingLeft: 20, paddingRight: 20}}>
                 <Card.Text style={{marginBottom: 0, color: '#5b5b5b'}}>Dzisiaj:</Card.Text>
                 <Card.Title className={clsName} style={{fontSize: 40}}>{cases}</Card.Title>
                 <Card.Text style={{marginBottom: 0, color: '#5b5b5b'}}>Ogółem:</Card.Text>
-                <Card.Title style={{fontSize: 34, color: '#5b5b5b'}}>{total}</Card.Title>
+                <Card.Title style={{fontSize: 24, color: '#5b5b5b'}}>{total}</Card.Title>
                 <hr/>
                 <Card.Title style={{fontSize: 12, color: '#aaaaaa'}}>Ostatnia aktualizacja: {updated}</Card.Title>
             </Card.Body>

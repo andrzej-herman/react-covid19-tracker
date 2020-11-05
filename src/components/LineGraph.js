@@ -82,7 +82,7 @@ function LineGraph({casesType = 'cases'}) {
                 return response.json();
             })
             .then(data => {
-                const chartData = buildChartData(data);
+                const chartData = buildChartData(data, casesType);
                 setData(chartData);
             });
         }
@@ -108,6 +108,10 @@ function LineGraph({casesType = 'cases'}) {
         return chartData;
     }
 
+    let bColor = casesType === "cases" ? "rgba(204, 16, 52, 0.5)" : casesType === "deaths" ? "rgba(27, 26, 26, 0.5)" : "rgba(14, 116, 18, 0.5)";
+    let color = casesType === "cases" ? "#CC1034" : casesType === "deaths" ?  "#1b1a1a" : "#0e7412";
+
+
     return (
         <div style={{marginTop: '20px', marginBottom: '20px', height: 250, width: '100%'}}>
             {data?.length > 0 && (
@@ -116,8 +120,8 @@ function LineGraph({casesType = 'cases'}) {
             data={{
                 datasets : [
                     {
-                    backgroundColor: "rgba(204, 16, 52, 0.5)",
-                    borderColor: "#CC1034",
+                    backgroundColor: bColor,
+                    borderColor: color,
                     data: data
                 }
             ],

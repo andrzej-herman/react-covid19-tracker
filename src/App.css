@@ -45,7 +45,7 @@ body {
 }
 
 .infoBox {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .app__tabs {
@@ -53,8 +53,12 @@ body {
 }
 
 .tab__content {
-  padding: 25px;
-  margin-top: 10px;
+  padding: 5px;
+}
+
+.tab__content__graph {
+  padding: 5px;
+  margin-bottom: 30px;
 }
 
 .black {

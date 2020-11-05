@@ -9,7 +9,6 @@ function CountryTable({ countries }) {
                 <tr>
                 <th>LP</th>
                 <th>Państwo</th>
-                <th style={{color: '#fff'}}>ddsaddddsad</th>
                 <th>Ilość</th>
                
                 </tr>
@@ -20,7 +19,6 @@ function CountryTable({ countries }) {
                 <tr>
                 <td className={name === 'Polska' ? 'red' : ''} style={{fontSize: 14, paddingTop: 5}}>{position}.</td>
                 <td className={name === 'Polska' ? 'red' : ''} style={{fontSize: 14, paddingTop: 5}}>{name}</td>
-                <td>&nbsp;</td>
                 <td className={name === 'Polska' ? 'red' : ''} style={{fontSize: 14, paddingTop: 5}}>{totalCases.toString()}</td>
                 </tr>
             ))}
