@@ -16,7 +16,7 @@ function CountryTable({ countries }) {
             <tbody>
 
             {countries.map(({name, totalCases, position}) => (
-                <tr>
+                <tr key={position}>
                 <td className={name === 'Polska' ? 'red' : ''} style={{fontSize: 14, paddingTop: 5}}>{position}.</td>
                 <td className={name === 'Polska' ? 'red' : ''} style={{fontSize: 14, paddingTop: 5}}>{name}</td>
                 <td className={name === 'Polska' ? 'red' : ''} style={{fontSize: 14, paddingTop: 5}}>{totalCases.toString()}</td>

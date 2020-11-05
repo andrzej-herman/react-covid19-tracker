@@ -26,7 +26,7 @@ const options = {
             {
                 type: "time",
                 time: {
-                    format: "MM/DD/YY",
+                    parser: "MM/DD/YY",
                     tooltipFormat: "ll"
                 },
                 ticks: {
@@ -89,7 +89,7 @@ function LineGraph({casesType = 'cases'}) {
 
         fetchData();
 
-    }, []);
+    }, [casesType]);
 
     const buildChartData = (data, casesType = "cases") => {
         const chartData = [];

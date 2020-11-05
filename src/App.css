@@ -76,3 +76,34 @@ body {
 #mapid { 
   height: 180px; 
 }
+
+.popup__flagContainer {
+  margin-bottom: 7px;
+}
+
+.popup__container {
+  padding: 5px;
+}
+
+
+.popup__flag {
+  width: 170px;
+  height: 115px;
+  border: 1px solid #e8e8e8;
+}
+
+.popup__name {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a44b1
+}
+
+.popup__data {
+  color: #82888a;
+}
+
+.popup__updated {
+  color: #1a44b1;
+  font-size: 11px;
+}

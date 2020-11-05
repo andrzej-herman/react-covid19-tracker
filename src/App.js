@@ -16,7 +16,7 @@ import {
   sortDataTotalDeath,
   sortDataTotalDeathThousand } from './util';
 import LineGraph from './components/LineGraph';
-import { Container, Row, Col, Form, Card, Tabs, Tab, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap'
 import WorldMap from './components/table/worldmap/WorldMap';
 import 'leaflet/dist/leaflet.css';
 
@@ -24,7 +24,7 @@ function App() {
 
 const [countries, setCountries] = useState([]);
 const [country, setCountry] = useState('PL|Polska');
-const [flag, setFlag] = useState('https://disease.sh/assets/img/flags/pl.png');
+// const [flag, setFlag] = useState('https://disease.sh/assets/img/flags/pl.png');
 const [countryInfo, setCountryInfo] = useState({});
 const [tableDataByTotal, setTableDataByTotal] = useState([]);
 const [tableDataByToday, setTableDataByToday] = useState([]);
@@ -182,13 +182,6 @@ useEffect(() => {
           } 
         });
 
-
-
-
-
-
-
-
         data.displayData.forEach(element => {
           const result = countriesWithPoland.find( ({ code }) => code === element.countryInfo.iso2 );
           const test = ((element.deaths * 1000) / element.population).toFixed(5);
@@ -343,9 +336,7 @@ const getCovidData = async (url, world) => {
 const onCountryChange = async (event) => {
   const fullValue = event.target.value.split('|');
   const code = fullValue[0];
-  const flagPath = `https://disease.sh/assets/img/flags/${code.toLowerCase()}.png`
   setCountry(event.target.value);
-  setFlag(flagPath);
 
   const url = code === 'ALL' 
   ? 'https://disease.sh/v3/covid-19/all' 

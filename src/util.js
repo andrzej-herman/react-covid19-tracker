@@ -1,4 +1,6 @@
 import { Circle, Popup } from 'react-leaflet';
+import numeral from 'numeral';
+import './App.css';
 
 export const sortDataByTotal = (data) => {
     const sortedData = [...data];
@@ -170,6 +172,7 @@ const casesTypeColors = {
 export const showDataOnMap = (data, type) => (
     data.map(c => (
         <Circle
+            key={c.name}
             center={[c.lat, c.lng]}
             fillOpacity={0.4}
             color={casesTypeColors[type].hex}
@@ -178,11 +181,25 @@ export const showDataOnMap = (data, type) => (
                 Math.sqrt(c[type]) * casesTypeColors[type].multiplier
             }
             >
-            <Popup>
-                <h1>To jest popup</h1>
+            <Popup className="popup__all">
+                <div className="popup__container">
+                    <div className="popup__flagContainer"><img className="popup__flag" src={c.flag} alt={c.name}></img></div>
+                    <div className="popup__name">{c.name}</div>        
+                    <div className="popup__data">Populacja: {numeral(c.population).format("0,0")}</div>
+                    <hr/>
+                    <div className="popup__data">Zarażenia dzisiaj: {numeral(c.todayCases).format("0,0")}</div>
+                    <div className="popup__data">Zarażenia łącznie: {numeral(c.cases).format("0,0")}</div>
+                    <br/>
+                    <div className="popup__data">Zgony dzisiaj: {numeral(c.todayDeaths).format("0,0")}</div>
+                    <div className="popup__data">Zgony łącznie: {numeral(c.deaths).format("0,0")}</div>
+                    <br/>
+                    <div className="popup__data">Ozdrowieńcy dzisiaj: {numeral(c.todayRecovered).format("0,0")}</div>
+                    <div className="popup__data">Ozdrowieńcy łącznie: {numeral(c.recovered).format("0,0")}</div>
+                    <br/>
+                    <div className="popup__updated">Zaktualizowano: {c.updated}</div>
+                </div>
             </Popup>
         </Circle>
     ))
 );
-
 
